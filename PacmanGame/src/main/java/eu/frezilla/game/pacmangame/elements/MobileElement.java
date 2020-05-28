@@ -24,7 +24,11 @@
 package eu.frezilla.game.pacmangame.elements;
 
 import eu.frezilla.game.pacmangame.Direction;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 abstract class MobileElement extends Element {
 
     private Direction direction;

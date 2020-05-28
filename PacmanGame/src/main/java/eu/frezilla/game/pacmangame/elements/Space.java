@@ -24,8 +24,12 @@
 package eu.frezilla.game.pacmangame.elements;
 
 import eu.frezilla.game.pacmangame.SpaceTypeId;
+import lombok.Getter;
+import lombok.Setter;
 
-public final class Space extends StaticElement {
+@Getter
+@Setter
+final class Space extends StaticElement {
     
     private SpaceTypeId spaceTypeId;
 }

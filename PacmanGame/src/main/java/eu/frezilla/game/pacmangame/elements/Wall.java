@@ -24,7 +24,11 @@
 package eu.frezilla.game.pacmangame.elements;
 
 import eu.frezilla.game.pacmangame.WallTypeId;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public final class Wall extends StaticElement {
     
     private WallTypeId wallTypeId;    

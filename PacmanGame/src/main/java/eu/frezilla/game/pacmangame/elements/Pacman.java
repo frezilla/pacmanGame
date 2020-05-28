@@ -24,7 +24,11 @@
 package eu.frezilla.game.pacmangame.elements;
 
 import eu.frezilla.game.pacmangame.PacmanStatus;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 final class Pacman extends MobileElement {
 
     private PacmanStatus status;

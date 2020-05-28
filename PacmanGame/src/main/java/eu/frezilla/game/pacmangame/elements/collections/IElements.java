@@ -21,16 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame.elements;
+package eu.frezilla.game.pacmangame.elements.collections;
 
-import eu.frezilla.game.pacmangame.GhostStatus;
-import lombok.Getter;
-import lombok.Setter;
+import eu.frezilla.game.pacmangame.elements.Element;
 
-@Getter
-@Setter
-final class Ghost extends MobileElement {
+public interface IElements {
     
-    private int color;
-    private GhostStatus status;
+    void add(Element e);
+    
+    Element get(int i);
+    
+    void remove(int i);
+    
+    int size();
+    
+    
 }

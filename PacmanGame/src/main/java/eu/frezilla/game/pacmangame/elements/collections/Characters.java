@@ -21,16 +21,45 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame.elements;
+package eu.frezilla.game.pacmangame.elements.collections;
 
-import eu.frezilla.game.pacmangame.GhostStatus;
-import lombok.Getter;
-import lombok.Setter;
+import eu.frezilla.game.pacmangame.elements.Element;
+import java.util.ArrayList;
+import java.util.List;
 
-@Getter
-@Setter
-final class Ghost extends MobileElement {
+public final class Characters {
     
-    private int color;
-    private GhostStatus status;
+    private final IElements elements;
+    
+    public Characters(IElements elements) {
+        this.elements = elements;
+    }
+    
+    public void add(Element e) {
+        elements.add(e);
+    }
+    
+    public Element get(int i) {
+        return elements.get(i);
+    }
+    
+    public List<Element> get(int x, int y) {
+        List<Element> list = new ArrayList<>();
+        for (int i = 0; i < elements.size(); i++) {
+            Element element = elements.get(i);
+            if (element.getX() == x && element.getY() == y) {
+                list.add(element);
+            }
+        }
+        return list;
+    }
+    
+    public void remove(int i) {
+        elements.remove(i);
+    }
+    
+    public int size() {
+        return elements.size();
+    }
+    
 }

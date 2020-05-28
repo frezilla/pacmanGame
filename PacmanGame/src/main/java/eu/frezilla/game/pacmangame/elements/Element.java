@@ -23,6 +23,11 @@
  */
 package eu.frezilla.game.pacmangame.elements;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public abstract class Element {
 
     private int x;
