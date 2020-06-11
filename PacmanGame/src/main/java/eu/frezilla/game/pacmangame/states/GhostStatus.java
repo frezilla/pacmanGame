@@ -21,15 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame.elements;
+package eu.frezilla.game.pacmangame.states;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
-public abstract class Element {
-
-    private int x;
-    private int y;
+public enum GhostStatus {
+    EYES,
+    FLEE,
+    TRACK;
 }

@@ -21,18 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame.elements;
+package eu.frezilla.game.pacmangame.states;
 
-import eu.frezilla.game.pacmangame.Direction;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.NonNull;
 
 @Getter
-@Setter
-abstract class MobileElement extends Element {
-
-    private Direction direction;
-    private int position;
-    private int speed;
-    private int statusTime;
+public final class Space extends StaticElement {
+    
+    private final SpaceTypeId spaceTypeId;
+    
+    private Space(@NonNull SpaceTypeId spaceTypeId) {
+        this.spaceTypeId = spaceTypeId;
+    }
+    
+    public static Space newInstance(SpaceTypeId spaceTypeId) {
+        return new Space(spaceTypeId);
+    }
 }

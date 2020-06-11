@@ -21,10 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame;
+package eu.frezilla.game.pacmangame.states;
 
-public enum GhostStatus {
-    EYES,
-    FLEE,
-    TRACK;
+public enum SpaceTypeId {
+    EMPTY,
+    GRAVEYARD,
+    GUM,
+    START,
+    SUPERGUM;
 }

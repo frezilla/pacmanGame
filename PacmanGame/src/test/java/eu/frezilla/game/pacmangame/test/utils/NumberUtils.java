@@ -21,15 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame.elements;
+package eu.frezilla.game.pacmangame.test.utils;
 
-import eu.frezilla.game.pacmangame.WallTypeId;
-import lombok.Getter;
-import lombok.Setter;
+import java.util.Random;
 
-@Getter
-@Setter
-public final class Wall extends StaticElement {
+public class NumberUtils {
     
-    private WallTypeId wallTypeId;    
+    private static class NumberUtilsHolder {
+        private static final NumberUtils INSTANCE = new NumberUtils();
+    }
+    
+    private final Random random;
+    
+    private NumberUtils() {
+        random = new Random();
+    }
+    
+    public static int generateRandomNumber(int minValue, int maxValue) {
+        if (minValue >= maxValue) {
+            throw new IllegalArgumentException("maxValue must be greater than minValue");
+        }
+        
+        return (minValue + NumberUtilsHolder.INSTANCE.random.nextInt(Math.abs(maxValue - minValue)));
+    }
+
+    
 }

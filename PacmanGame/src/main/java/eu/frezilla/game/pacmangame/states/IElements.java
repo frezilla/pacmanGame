@@ -21,15 +21,19 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame.elements;
+package eu.frezilla.game.pacmangame.states;
 
-import eu.frezilla.game.pacmangame.PacmanStatus;
-import lombok.Getter;
-import lombok.Setter;
+import eu.frezilla.game.pacmangame.states.Element;
 
-@Getter
-@Setter
-final class Pacman extends MobileElement {
-
-    private PacmanStatus status;
+public interface IElements {
+    
+    void add(Element e);
+    
+    Element get(int i);
+    
+    void remove(int i);
+    
+    int size();
+    
+    
 }

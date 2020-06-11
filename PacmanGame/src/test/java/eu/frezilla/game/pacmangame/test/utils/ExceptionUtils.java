@@ -21,15 +21,29 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame.elements;
+package eu.frezilla.game.pacmangame.test.utils;
 
-import eu.frezilla.game.pacmangame.SpaceTypeId;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.function.Executable;
 
-@Getter
-@Setter
-final class Space extends StaticElement {
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public class ExceptionUtils {
     
-    private SpaceTypeId spaceTypeId;
+    public static void expectException(Executable executable, Class<? extends Throwable>...clazz) {
+        boolean exception = false;
+        for (Class<? extends Throwable> c : clazz) {
+            Throwable t = Assertions.assertThrows(c, executable);
+            if (t != null) {
+                exception = true;
+                break;
+            }
+        }
+        
+        if (!exception) {
+            Assertions.fail();
+        }
+    }
+    
 }

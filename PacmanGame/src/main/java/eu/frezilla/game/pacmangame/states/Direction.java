@@ -21,13 +21,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame;
+package eu.frezilla.game.pacmangame.states;
 
-public enum WallTypeId {
-    BOTTOMLEFT,
-    BOTTOMRIGHT,
-    HORIZONTAL,
-    TOPLEFT,
-    TOPRIGHT,
-    VERTICAL;
+public enum Direction {
+    EAST,
+    NONE,
+    NORTH,
+    SOUTH,
+    WEST
 }

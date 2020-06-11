@@ -21,12 +21,44 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame;
+package eu.frezilla.game.pacmangame.states;
 
-public enum SpaceTypeId {
-    EMPTY,
-    GRAVBEYARD,
-    GUM,
-    START,
-    SUPERGUM;
+import java.util.ArrayList;
+import java.util.List;
+
+public final class Characters {
+    
+    private final IElements elements;
+    
+    public Characters(IElements elements) {
+        this.elements = elements;
+    }
+    
+    public void add(Element e) {
+        elements.add(e);
+    }
+    
+    public Element get(int i) {
+        return elements.get(i);
+    }
+    
+    public List<Element> get(int x, int y) {
+        List<Element> list = new ArrayList<>();
+        for (int i = 0; i < elements.size(); i++) {
+            Element element = elements.get(i);
+            if (element.getX() == x && element.getY() == y) {
+                list.add(element);
+            }
+        }
+        return list;
+    }
+    
+    public void remove(int i) {
+        elements.remove(i);
+    }
+    
+    public int size() {
+        return elements.size();
+    }
+    
 }

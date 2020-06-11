@@ -21,19 +21,39 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame.elements.collections;
+package eu.frezilla.game.pacmangame.states;
 
-import eu.frezilla.game.pacmangame.elements.Element;
+import eu.frezilla.game.pacmangame.states.Element;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.NonNull;
 
-public interface IElements {
+public final class Elements implements IElements {
     
-    void add(Element e);
+    private final List<Element> elements;
     
-    Element get(int i);
-    
-    void remove(int i);
-    
-    int size();
-    
+    public Elements() {
+        elements = new ArrayList<>();
+    }
+
+    @Override
+    public void add(@NonNull Element e) {
+        elements.add(e);
+    }
+
+    @Override
+    public Element get(int i) {
+        return elements.get(i);
+    }
+
+    @Override
+    public void remove(int i) {
+        elements.remove(i);
+    }
+
+    @Override
+    public int size() {
+        return elements.size();
+    }
     
 }

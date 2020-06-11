@@ -21,10 +21,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame;
+package eu.frezilla.game.pacmangame.states;
 
-public enum PacmanStatus {
-    DEAD,
-    NORMAL,
-    SUPER;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.ToString;
+
+@EqualsAndHashCode
+@Getter
+@ToString
+public final class Dimensions {
+    
+    private int height;
+    private int width;
+    
+    public Dimensions() {
+        height = 0;
+        width = 0;
+    }
+    
+    public static Dimensions of(@NonNull Dimensions dimensions) {
+        return of(dimensions.getWidth(), dimensions.getHeight());
+    }
+
+    public static Dimensions of(int width, int height) {
+        Dimensions d = new Dimensions();
+        d.setHeight(height);
+        d.setWidth(width);
+        return d;
+    }
+    
+    public void setHeight(int height) {
+        if (height < 0)  {
+            throw new IllegalArgumentException();
+        }
+        this.height = height;
+    }
+    
+    public void setWidth(int width) {
+        if (width < 0)  {
+            throw new IllegalArgumentException();
+        }
+        this.width = width;
+    }
+    
 }
