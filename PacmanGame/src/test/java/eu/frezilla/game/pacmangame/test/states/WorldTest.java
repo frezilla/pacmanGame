@@ -29,7 +29,11 @@ import eu.frezilla.game.pacmangame.states.SpaceTypeId;
 import eu.frezilla.game.pacmangame.states.StaticElement;
 import eu.frezilla.game.pacmangame.states.World;
 import eu.frezilla.game.pacmangame.test.utils.NumberUtils;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
@@ -37,10 +41,17 @@ import org.junit.runner.RunWith;
 @RunWith(JUnitPlatform.class)
 public class WorldTest {
     
+    private Dimensions worldDimensions;
+    private World world;
+    
+    @BeforeEach
+    public void createWorld() {
+        worldDimensions = Dimensions.of(NumberUtils.generateRandomNumber(3, 10), NumberUtils.generateRandomNumber(3, 10));
+        world = new World(Dimensions.of(worldDimensions));
+    }
+    
+    @Test
     public void access() {
-        Dimensions worldDimensions = Dimensions.of(NumberUtils.generateRandomNumber(3, 10), NumberUtils.generateRandomNumber(3, 10));
-        World world = new World(Dimensions.of(worldDimensions));
-        
         int worldHeight = worldDimensions.getHeight();
         int worldWidth = worldDimensions.getWidth();
         for (int i = 0; i < 10; i++) {
@@ -58,8 +69,34 @@ public class WorldTest {
     
     @Test
     public void create() {
-        Dimensions worldDimensions = Dimensions.of(NumberUtils.generateRandomNumber(3, 10), NumberUtils.generateRandomNumber(3, 10));
-        World world = new World(Dimensions.of(worldDimensions));
         Assertions.assertTrue(world.getDimensions().equals(worldDimensions));
+    }
+    
+    @Test
+    public void iterator() {
+        List<StaticElement> staticElementList = new ArrayList<>();
+        SpaceTypeId[] spaceTypeIdArray = SpaceTypeId.values();
+        int nbSpaceTypeId = spaceTypeIdArray.length;
+        
+        for (int y = 0 ; y < worldDimensions.getHeight(); y++) {
+            for (int x = 0; x < worldDimensions.getWidth(); x++) {            
+                Space space = Space.newInstance(spaceTypeIdArray[NumberUtils.generateRandomNumber(0, nbSpaceTypeId)]);
+                staticElementList.add(space);
+                world.set(x, y, space);
+            }
+        }
+        
+        Iterator<StaticElement> it = world.iterator();
+        int currentIndex = 0;
+        while (it.hasNext()) {
+            StaticElement staticElementIt = it.next();
+            StaticElement staticElementEl = staticElementList.get(currentIndex);
+            Assertions.assertEquals(staticElementIt, staticElementEl);
+            currentIndex++;
+        }
+        
+        if (currentIndex != staticElementList.size()) {
+            Assertions.fail();
+        }
     }
 }

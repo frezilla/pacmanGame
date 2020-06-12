@@ -27,7 +27,7 @@ import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
-public final class WorldIterator implements Iterator<StaticElement> {
+final class WorldIterator implements Iterator<StaticElement> {
     
     private final World world;
     private int x;
