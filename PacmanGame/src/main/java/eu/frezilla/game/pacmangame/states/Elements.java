@@ -23,7 +23,6 @@
  */
 package eu.frezilla.game.pacmangame.states;
 
-import eu.frezilla.game.pacmangame.states.Element;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.NonNull;

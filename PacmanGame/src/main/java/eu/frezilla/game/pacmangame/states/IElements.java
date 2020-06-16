@@ -23,8 +23,6 @@
  */
 package eu.frezilla.game.pacmangame.states;
 
-import eu.frezilla.game.pacmangame.states.Element;
-
 public interface IElements {
     
     void add(Element e);

@@ -42,7 +42,7 @@ public final class WorldIterator implements Iterator<StaticElement> {
     @Override
     public boolean hasNext() {
         Dimensions dimensions = Objects.requireNonNull(world.getDimensions());
-        return (x+1 < dimensions.getWidth() || (y+1 < dimensions.getHeight()));
+        return x+1 < dimensions.getWidth() || y+1 < dimensions.getHeight();
     }
 
     @Override
