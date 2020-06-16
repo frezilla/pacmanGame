@@ -31,7 +31,6 @@ import org.junit.jupiter.api.function.Executable;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ExceptionUtils {
     
-    @SafeVarargs
     public static void expectException(Executable executable, Class<? extends Throwable>...clazz) {
         boolean exception = false;
         for (Class<? extends Throwable> c : clazz) {
