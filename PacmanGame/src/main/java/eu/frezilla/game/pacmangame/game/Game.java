@@ -28,13 +28,16 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public final class Game {
-
     private static final int DEFAULT_FPS = 60;
+    private static Logger LOGGER = LoggerFactory.getLogger(Game.class);
 
     private boolean isRunning;
     private final List<Renderable> renderableList;
@@ -78,31 +81,26 @@ public final class Game {
             computeNanoPerFrame();
             isRunning = true;
 
-            long lasTime = System.nanoTime();
+            long lastTime = System.nanoTime();
 
             while (isRunning) {
                 long nowTime = System.nanoTime();
-                if ((nowTime - lasTime) < targetNanoPerFrame) {
+                if ((nowTime - lastTime) < targetNanoPerFrame) {
                     continue;
                 }
-                lasTime = nowTime;
+                lastTime = nowTime;
 
                 render();
 
-                long elapsedTime = (System.nanoTime() - lasTime) / 1000000;
-                if (elapsedTime > 0) {
-                    try {
-                        Thread.sleep(elapsedTime);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
+                try {
+                    TimeUnit.NANOSECONDS.sleep(System.nanoTime() - lastTime);
+                } catch (InterruptedException e) {
+                    LOGGER.error("Interrupted exception while sleeping {}", e);
                 }
-
             }
         } else {
             throw new RuntimeException("Game is already running");
         }
-
     }
 
     @NoArgsConstructor(access = AccessLevel.PRIVATE)
