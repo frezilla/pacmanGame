@@ -37,7 +37,7 @@ import org.slf4j.LoggerFactory;
 
 public final class Game {
     private static final int DEFAULT_FPS = 60;
-    private static Logger LOGGER = LoggerFactory.getLogger(Game.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(Game.class);
 
     private boolean isRunning;
     private final List<Renderable> renderableList;
