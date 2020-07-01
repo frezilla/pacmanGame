@@ -23,7 +23,7 @@
  */
 package eu.frezilla.game.pacmangame.test.states;
 
-import eu.frezilla.game.pacmangame.states.Dimensions;
+import eu.frezilla.game.pacmangame.common.Dimensions;
 import eu.frezilla.game.pacmangame.states.Space;
 import eu.frezilla.game.pacmangame.states.SpaceTypeId;
 import eu.frezilla.game.pacmangame.states.StaticElement;

@@ -21,24 +21,49 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame;
+package eu.frezilla.game.pacmangame.common;
 
-import eu.frezilla.game.pacmangame.game.Game;
-import eu.frezilla.game.pacmangame.gui.AwtGUI;
-import java.io.IOException;
+import lombok.NonNull;
 
-public class Launcher {
+public final class AbsolutePosition2D {
     
-    public static void main(String args[]) {
-        try {
-            AwtGUI gui = new AwtGUI();
-            gui.display();
-
-            Game game = Game.getBuilder().add(gui).build();
-            game.run();
-        } catch (IOException e) {
-            System.exit(-1);
+    private final Position2D position2D;
+    
+    public AbsolutePosition2D() {
+        position2D = Position2D.of(0, 0);
+    }
+    
+    public int getX() {
+        return position2D.getX();
+    }
+    
+    public int getY() {
+        return position2D.getY();
+    }
+    
+    public static AbsolutePosition2D of(@NonNull AbsolutePosition2D position) {
+        return of(position.getX(), position.getY());
+    }
+    
+    public static AbsolutePosition2D of(int x, int y) {
+        AbsolutePosition2D p = new AbsolutePosition2D();
+        p.setX(x);
+        p.setY(y);
+        return p;
+    }
+    
+    public void setX(int x) {
+        if (x < 0) {
+            throw new IllegalArgumentException();
         }
+        position2D.setX(x);
+    }
+    
+    public void setY(int y) {
+        if (y < 0) {
+            throw new IllegalArgumentException();
+        }
+        position2D.setY(y);
     }
     
 }

@@ -23,6 +23,7 @@
  */
 package eu.frezilla.game.pacmangame.states;
 
+import eu.frezilla.game.pacmangame.common.Dimensions;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Objects;

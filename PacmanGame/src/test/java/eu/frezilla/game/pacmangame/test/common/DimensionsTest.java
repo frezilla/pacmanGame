@@ -21,9 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame.test.states;
+package eu.frezilla.game.pacmangame.test.common;
 
-import eu.frezilla.game.pacmangame.states.Dimensions;
+import eu.frezilla.game.pacmangame.common.Dimensions;
 import eu.frezilla.game.pacmangame.test.utils.ExceptionUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

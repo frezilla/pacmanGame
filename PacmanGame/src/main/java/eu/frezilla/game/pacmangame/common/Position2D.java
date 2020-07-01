@@ -21,24 +21,36 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package eu.frezilla.game.pacmangame;
+package eu.frezilla.game.pacmangame.common;
 
-import eu.frezilla.game.pacmangame.game.Game;
-import eu.frezilla.game.pacmangame.gui.AwtGUI;
-import java.io.IOException;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+import lombok.ToString;
 
-public class Launcher {
-    
-    public static void main(String args[]) {
-        try {
-            AwtGUI gui = new AwtGUI();
-            gui.display();
+@EqualsAndHashCode
+@Getter
+@Setter
+@ToString
+public final class Position2D {
 
-            Game game = Game.getBuilder().add(gui).build();
-            game.run();
-        } catch (IOException e) {
-            System.exit(-1);
-        }
+    private int x;
+    private int y;
+
+    public Position2D() {
+        x = 0;
+        y = 0;
     }
-    
+
+    public static Position2D of(@NonNull Position2D position) {
+        return of(position.getX(), position.getY());
+    }
+
+    public static Position2D of(int x, int y) {
+        Position2D p = new Position2D();
+        p.setX(x);
+        p.setY(y);
+        return p;
+    }
 }
