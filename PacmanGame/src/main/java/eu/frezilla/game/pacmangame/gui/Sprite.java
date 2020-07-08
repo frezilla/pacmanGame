@@ -23,35 +23,26 @@
  */
 package eu.frezilla.game.pacmangame.gui;
 
+import eu.frezilla.game.pacmangame.common.AbsolutePosition2D;
 import eu.frezilla.game.pacmangame.common.Position2D;
 import java.awt.Graphics;
-import lombok.Getter;
 import lombok.NonNull;
 
-@Getter
-final class AnimatedSprite {
-
-    private long frameDuration;
-    private final Sprite sprite;
+final class Sprite {
     
-    public AnimatedSprite(@NonNull Sprite spriteFromTileSet, long frameDuration) {
-        if (frameDuration < 0) {
-            throw new IllegalArgumentException();
-        }
-        
-        this.frameDuration = frameDuration;
-        this.sprite = spriteFromTileSet;
+    private AbsolutePosition2D position2D;
+    private final TileSet tileSet;
+    
+    public Sprite(@NonNull AbsolutePosition2D p, @NonNull TileSet t) {
+        position2D = AbsolutePosition2D.of(p);
+        tileSet = t;
+    }
+    
+    public AbsolutePosition2D getPosition2D() {
+        return AbsolutePosition2D.of(position2D);
     }
     
     public void display(@NonNull Graphics g, @NonNull Position2D pos) {
-        sprite.display(g, pos);
-    }
-    
-    public void setFrameDuration(long frameDuration) {
-        if (frameDuration < 0) {
-            throw new IllegalArgumentException();
-        }
-        
-        this.frameDuration = frameDuration;
+        tileSet.displayTile(g, pos, position2D);
     }
 }

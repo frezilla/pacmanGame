@@ -7,9 +7,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import lombok.Getter;
+import lombok.NonNull;
 
 @Getter
-final class TileSet {
+public final class TileSet {
     
     private final int horizontalSpace;
     private final int marginLeft;
@@ -49,7 +50,7 @@ final class TileSet {
         }
     }
     
-    public void displayTile(Graphics g, Position2D pos, AbsolutePosition2D tilePos) {
+    public void displayTile(@NonNull Graphics g, @NonNull Position2D pos, @NonNull AbsolutePosition2D tilePos) {
         int tileX = tilePos.getX();
         int tileY = tilePos.getY();
         int x = pos.getX();

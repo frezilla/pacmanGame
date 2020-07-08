@@ -37,7 +37,7 @@ import java.awt.image.BufferStrategy;
 import java.io.IOException;
 
 public class AwtGUI implements Renderable {
-    public static String TILES_SET_PATH = "pics/tiles_set.png";
+    public static final String TILES_SET_PATH = "pics/tiles_set.png";
 
     private static final int CANVASHEIGHT = 600;
     private static final int CANVASWIDTH = 800;
@@ -47,7 +47,7 @@ public class AwtGUI implements Renderable {
     
     private final TileSet tileSet;
     
-    private AnimatedSprite coins;
+    private AnimatedSprites coins;
 
     public AwtGUI() throws IOException {
         frame = new Frame("Affichage et contrôle AWT");
@@ -77,18 +77,16 @@ public class AwtGUI implements Renderable {
     }
 
     private void initAnimatedSprites() {
-        coins = AnimatedSprite.getBuilder()
-                .setFrameDuration(125000000)
-                .addTiles(AbsolutePosition2D.of(0, 0))
-                .addTiles(AbsolutePosition2D.of(1, 0))
-                .addTiles(AbsolutePosition2D.of(2, 0))
-                .addTiles(AbsolutePosition2D.of(3, 0))
-                .addTiles(AbsolutePosition2D.of(4, 0))
-                .addTiles(AbsolutePosition2D.of(5, 0))
-                .addTiles(AbsolutePosition2D.of(6, 0))
-                .addTiles(AbsolutePosition2D.of(7, 0))
+        coins = AnimatedSprites.getBuilder()
+                .addSprite(new AnimatedSprite(new Sprite(AbsolutePosition2D.of(0, 0), tileSet), 125000000))
+                .addSprite(new AnimatedSprite(new Sprite(AbsolutePosition2D.of(1, 0), tileSet), 125000000))
+                .addSprite(new AnimatedSprite(new Sprite(AbsolutePosition2D.of(2, 0), tileSet), 125000000))
+                .addSprite(new AnimatedSprite(new Sprite(AbsolutePosition2D.of(3, 0), tileSet), 125000000))
+                .addSprite(new AnimatedSprite(new Sprite(AbsolutePosition2D.of(4, 0), tileSet), 125000000))
+                .addSprite(new AnimatedSprite(new Sprite(AbsolutePosition2D.of(5, 0), tileSet), 125000000))
+                .addSprite(new AnimatedSprite(new Sprite(AbsolutePosition2D.of(6, 0), tileSet), 125000000))
+                .addSprite(new AnimatedSprite(new Sprite(AbsolutePosition2D.of(7, 0), tileSet), 125000000))
                 .build();
-        
     }
 
     private void initCanvas() {
@@ -131,8 +129,6 @@ public class AwtGUI implements Renderable {
     
     private void renderCoins(Graphics g, long currentTime) {
         Position2D spritePos = Position2D.of((CANVASWIDTH - tileSet.getTileWidth()) / 2, (CANVASHEIGHT - tileSet.getTileHeight()) / 2);
-        AbsolutePosition2D tilePos = coins.getTile(currentTime);
-        
-        tileSet.displayTile(g, spritePos, tilePos);
+        coins.display(g, spritePos, currentTime);
     }
 }
